@@ -1,6 +1,9 @@
 import sys
 import math
 import matplotlib.pyplot as plt
+import random
+
+print (random.random())
 
 RATE_OF_FIRE = 6  # Shots per second
 AREA_OF_BULLET = 1/40  # Relative to drawing window
@@ -36,6 +39,29 @@ def set_plot(lista_de_coordenadas):
 
     plt.ylabel('Y')
     plt.xlabel('X')
+
+
+def iterar_lista(lista_de_coordenadas, lista_hipotenusa):
+    lista_final = []
+    i = 0
+    num_final = len(lista_de_coordenadas) - 1
+
+    while(i <= num_final):
+        lista_final.append(
+            (lista_de_coordenadas[i], lista_hipotenusa[i]))
+        i += 1
+
+    return lista_final
+
+
+
+def calcular_hipotenusas(lista_de_coordenadas):
+    lista_hipotenusa = []
+    for coordenada in lista_de_coordenadas:
+        hipotenusa = ((coordenada[0] ** 2 + coordenada[1]**2) ** (1/2))
+        lista_hipotenusa.append(hipotenusa)
+    return lista_hipotenusa
+
 
 
 def dibuja_punto_de_mira(color='k'):
@@ -75,3 +101,7 @@ if __name__ == '__main__':
         lista_de_coordenadas_aleatorizadas.append(aleatoriza_tiro(coordenada))
 
     dibuja_balas(lista_de_coordenadas_aleatorizadas)
+
+lista_hipotenusa = calcular_hipotenusas(lista_de_coordenadas)
+lista_final = iterar_lista(lista_de_coordenadas, lista_hipotenusa)
+(lista_final)
